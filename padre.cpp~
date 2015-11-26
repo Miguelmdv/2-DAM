@@ -4,6 +4,15 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+void spawn(const char *comando, const char *parametro) {
+    pid_t child = fork();
+
+    if (!child) {
+        execl(comando, comando, parametro, NULL);
+        fprintf(stderr, "no se encuentra el programa.\n");
+    }
+}
+
 int main (int argc, char *argv[]){
 	int child_status;
 	
